@@ -53,8 +53,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeStep, setActiveStep, com
         </ul>
       </nav>
       <div className="mt-auto text-center text-xs text-slate-500">
-        <p>Демо-проект на основе Gemini</p>
-        <p>&copy; 2024</p>
+        <p>&copy; 2025</p>
       </div>
     </aside>
   );

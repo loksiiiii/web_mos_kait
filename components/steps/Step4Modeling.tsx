@@ -9,7 +9,7 @@ const StatCard: React.FC<{ icon: React.ReactNode; label: string; value: string |
     <div className="bg-slate-800 p-6 rounded-lg flex items-center gap-4 border border-slate-700 text-center flex-col justify-center h-full">
         <div className={`p-3 rounded-full bg-slate-700 ${color}`}>{icon}</div>
         <div>
-            <div className="text-3xl font-bold">{value} <span className="text-xl font-normal text-slate-400">{sub}</span></div>
+            <div className="text-2xl sm:text-3xl font-bold">{value} <span className="text-lg sm:text-xl font-normal text-slate-400">{sub}</span></div>
             <div className="text-sm text-slate-400 mt-1">{label}</div>
         </div>
     </div>
@@ -58,17 +58,17 @@ const Step4Modeling: React.FC<{ analysisData: TrafficForecastData | null, isProc
                 <table className="w-full text-sm text-left">
                 <thead className="text-xs text-slate-400 uppercase bg-slate-800">
                     <tr>
-                    <th scope="col" className="px-6 py-3">Улица</th>
-                    <th scope="col" className="px-6 py-3 text-center">Прогноз. скорость (км/ч)</th>
-                    <th scope="col" className="px-6 py-3 text-center">Падение скорости (км/ч)</th>
+                    <th scope="col" className="px-2 sm:px-6 py-3">Улица</th>
+                    <th scope="col" className="px-2 sm:px-6 py-3 text-center">Прогноз. скорость (км/ч)</th>
+                    <th scope="col" className="px-2 sm:px-6 py-3 text-center">Падение скорости (км/ч)</th>
                     </tr>
                 </thead>
                 <tbody>
                     {analysisData.criticalSegments.map(segment => (
                     <tr key={segment.EdgeId} className="border-b border-slate-700 hover:bg-slate-800/50">
-                        <td className="px-6 py-4 font-medium">{segment.ST_NM_BASE} <span className="font-mono text-xs text-slate-500">({segment.EdgeId})</span></td>
-                        <td className="px-6 py-4 text-center font-semibold">{segment.NewSpdU.toFixed(1)}</td>
-                        <td className="px-6 py-4 text-center font-bold text-red-400">
+                        <td className="px-2 sm:px-6 py-4 font-medium">{segment.ST_NM_BASE} <span className="font-mono text-xs text-slate-500">({segment.EdgeId})</span></td>
+                        <td className="px-2 sm:px-6 py-4 text-center font-semibold">{segment.NewSpdU.toFixed(1)}</td>
+                        <td className="px-2 sm:px-6 py-4 text-center font-bold text-red-400">
                            {segment.SpdDelAbs.toFixed(1)}
                         </td>
                     </tr>

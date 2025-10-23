@@ -14,6 +14,8 @@ import {
 } from './services/geminiService';
 import { marked } from 'marked';
 import { CongestionAnalysisData, RoadConditionData, TrafficForecastData } from './types';
+import { MenuIcon } from './components/icons/MenuIcon';
+import { RoadIcon } from './components/icons/RoadIcon';
 
 const App: React.FC = () => {
   const [activeStep, setActiveStep] = useState(1);
@@ -30,6 +32,8 @@ const App: React.FC = () => {
   const [recommendationsHtml, setRecommendationsHtml] = useState<string>('');
   
   const [error, setError] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
   const resetState = () => {
     setActiveStep(1);
@@ -139,29 +143,47 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-900 font-sans text-slate-200">
+    <div className="min-h-screen bg-slate-900 font-sans text-slate-200">
       <Sidebar
         activeStep={activeStep}
         setActiveStep={setActiveStep}
         completedSteps={completedSteps}
         processingStep={processingStep}
         isProcessing={isProcessing}
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
       />
-      <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
-        <div className="max-w-7xl mx-auto space-y-8">
-          {error && (
-            <div className="bg-red-600/20 border border-red-500 text-red-300 p-4 rounded-lg shadow-lg flex items-start gap-4">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-800 flex items-center justify-center font-bold text-sm">!</div>
-              <div className="flex-grow">
-                <p className="font-bold">Ошибка</p>
-                <p className="text-sm">{error}</p>
-              </div>
-              <button onClick={() => setError(null)} className="text-red-200 hover:text-white font-bold text-2xl leading-none">&times;</button>
+      <div className="md:pl-64 flex flex-col flex-1 min-h-screen">
+        <header className="md:hidden flex items-center justify-between p-4 border-b border-slate-700 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-10">
+            <div className="flex items-center gap-2">
+                <RoadIcon className="w-6 h-6 text-cyan-400" />
+                <h1 className="text-lg font-bold text-white">Анализ Трафика</h1>
             </div>
-          )}
-          {renderStep()}
-        </div>
-      </main>
+            <button 
+                onClick={() => setIsSidebarOpen(true)}
+                className="p-1 text-slate-400 hover:text-cyan-400"
+                aria-label="Открыть меню"
+            >
+                <MenuIcon className="w-6 h-6" />
+            </button>
+        </header>
+
+        <main className="flex-1 p-4 sm:p-6">
+          <div className="max-w-7xl mx-auto space-y-8">
+            {error && (
+              <div className="bg-red-600/20 border border-red-500 text-red-300 p-4 rounded-lg shadow-lg flex items-start gap-4">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-800 flex items-center justify-center font-bold text-sm">!</div>
+                <div className="flex-grow">
+                  <p className="font-bold">Ошибка</p>
+                  <p className="text-sm">{error}</p>
+                </div>
+                <button onClick={() => setError(null)} className="text-red-200 hover:text-white font-bold text-2xl leading-none">&times;</button>
+              </div>
+            )}
+            {renderStep()}
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

@@ -46,21 +46,21 @@ const Step3Analysis: React.FC<{ analysisData: CongestionAnalysisData | null, isP
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-slate-400 uppercase bg-slate-800">
                 <tr>
-                  <th scope="col" className="px-6 py-3">Улица</th>
-                  <th scope="col" className="px-6 py-3 text-center">Текущая загр.</th>
-                  <th scope="col" className="px-6 py-3 text-center">Прогноз загр.</th>
-                  <th scope="col" className="px-6 py-3">Причина риска</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3">Улица</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3 text-center">Текущая загр.</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3 text-center">Прогноз загр.</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3">Причина риска</th>
                 </tr>
               </thead>
               <tbody>
                 {analysisData.highRiskSegments.map(segment => (
                   <tr key={segment.EdgeId} className="border-b border-slate-700 hover:bg-slate-800/50">
-                    <td className="px-6 py-4 font-medium">{segment.ST_NM_BASE} <span className="font-mono text-xs text-slate-500">({segment.EdgeId})</span></td>
-                    <td className="px-6 py-4 text-center">{(segment.CurLoad * 100).toFixed(0)}%</td>
-                    <td className={`px-6 py-4 font-bold text-center ${segment.Ovrld ? 'text-red-400' : 'text-amber-400'}`}>
+                    <td className="px-2 sm:px-6 py-4 font-medium">{segment.ST_NM_BASE} <span className="font-mono text-xs text-slate-500">({segment.EdgeId})</span></td>
+                    <td className="px-2 sm:px-6 py-4 text-center">{(segment.CurLoad * 100).toFixed(0)}%</td>
+                    <td className={`px-2 sm:px-6 py-4 font-bold text-center ${segment.Ovrld ? 'text-red-400' : 'text-amber-400'}`}>
                         {(segment.NewLoad * 100).toFixed(0)}%
                     </td>
-                    <td className="px-6 py-4">{segment.reason}</td>
+                    <td className="px-2 sm:px-6 py-4">{segment.reason}</td>
                   </tr>
                 ))}
               </tbody>

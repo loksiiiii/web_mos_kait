@@ -49,7 +49,7 @@ const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, isProcessin
   return (
     <div className="space-y-8">
         <div>
-            <h2 className="text-3xl font-bold text-white tracking-tight">Шаг 1: Загрузка и анализ данных GeoJSON</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Шаг 1: Загрузка и анализ данных GeoJSON</h2>
             <p className="text-slate-400 mt-2">Загрузите файл GeoJSON для поиска проблемных участков и генерации рекомендаций.</p>
         </div>
       <div 
@@ -59,8 +59,8 @@ const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, isProcessin
         onDragOver={onDragOver}
         onDrop={onDrop}
       >
-        <UploadIcon className="w-16 h-16 text-slate-500 mb-4" />
-        <h3 className="text-xl font-semibold mb-2 text-cyan-300">Загрузите GeoJSON файл</h3>
+        <UploadIcon className="w-12 h-12 sm:w-16 sm:h-16 text-slate-500 mb-4" />
+        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-cyan-300">Загрузите GeoJSON файл</h3>
         <p className="text-slate-400 mb-4">
           Перетащите файл сюда или нажмите, чтобы выбрать
         </p>

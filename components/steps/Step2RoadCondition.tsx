@@ -60,7 +60,7 @@ const Step2RoadCondition: React.FC<{ analysisData: RoadConditionData | null, isP
          <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
           <h3 className="text-xl font-semibold mb-2 text-cyan-300">Распределение по уровню загруженности (LOS)</h3>
           <p className="text-slate-400 mb-6 text-sm">{analysisData.summary}</p>
-          <div style={{ width: '100%', height: 300 }}>
+          <div className="w-full h-[250px] sm:h-[300px]">
             <ResponsiveContainer>
               <BarChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.2}/>
@@ -82,23 +82,23 @@ const Step2RoadCondition: React.FC<{ analysisData: RoadConditionData | null, isP
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-slate-400 uppercase bg-slate-800">
                 <tr>
-                  <th scope="col" className="px-6 py-3">ID</th>
-                  <th scope="col" className="px-6 py-3">Улица</th>
-                  <th scope="col" className="px-6 py-3">LOS</th>
-                  <th scope="col" className="px-6 py-3">Причина</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3">ID</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3">Улица</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3">LOS</th>
+                  <th scope="col" className="px-2 sm:px-6 py-3">Причина</th>
                 </tr>
               </thead>
               <tbody>
                 {analysisData.highPrioritySegments.map(segment => (
                   <tr key={segment.EdgeId} className="border-b border-slate-700 hover:bg-slate-800/50">
-                    <td className="px-6 py-4 font-mono">{segment.EdgeId}</td>
-                    <td className="px-6 py-4 font-medium">{segment.ST_NM_BASE}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-2 sm:px-6 py-4 font-mono">{segment.EdgeId}</td>
+                    <td className="px-2 sm:px-6 py-4 font-medium">{segment.ST_NM_BASE}</td>
+                    <td className="px-2 sm:px-6 py-4">
                       <span className="font-bold px-2 py-1 rounded-md" style={{backgroundColor: `${LOS_LEVELS[segment.CurLos]?.color}30`, color: LOS_LEVELS[segment.CurLos]?.color }}>
                         {LOS_LEVELS[segment.CurLos]?.label}
                       </span>
                     </td>
-                    <td className="px-6 py-4">{segment.reason}</td>
+                    <td className="px-2 sm:px-6 py-4">{segment.reason}</td>
                   </tr>
                 ))}
               </tbody>

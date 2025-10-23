@@ -1,13 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import { UploadIcon } from '../icons/UploadIcon';
+import { RoadIcon } from '../icons/RoadIcon';
 
 interface Step1DataPrepProps {
   onFileSelect: (file: File) => void;
+  onDemoSelect: () => void;
   isProcessing: boolean;
   fileName: string | null;
 }
 
-const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, isProcessing, fileName }) => {
+const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, onDemoSelect, isProcessing, fileName }) => {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleFileChange = (files: FileList | null) => {
@@ -49,39 +51,56 @@ const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, isProcessin
   return (
     <div className="space-y-8">
         <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Шаг 1: Загрузка и анализ данных GeoJSON</h2>
-            <p className="text-slate-400 mt-2">Загрузите файл GeoJSON для поиска проблемных участков и генерации рекомендаций.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Шаг 1: Загрузка и анализ данных</h2>
+            <p className="text-slate-400 mt-2">Запустите анализ на демо-данных или загрузите свой файл GeoJSON.</p>
         </div>
-      <div 
-        className={`bg-slate-800/50 p-6 rounded-lg border-2 border-dashed ${isDragging ? 'border-cyan-400' : 'border-slate-700'} ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''} transition-all duration-300 flex flex-col items-center justify-center text-center`}
-        onDragEnter={onDragEnter}
-        onDragLeave={onDragLeave}
-        onDragOver={onDragOver}
-        onDrop={onDrop}
-      >
-        <UploadIcon className="w-12 h-12 sm:w-16 sm:h-16 text-slate-500 mb-4" />
-        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-cyan-300">Загрузите GeoJSON файл</h3>
-        <p className="text-slate-400 mb-4">
-          Перетащите файл сюда или нажмите, чтобы выбрать
-        </p>
-        <input
-          type="file"
-          id="file-upload"
-          className="hidden"
-          accept=".geojson,.json"
-          onChange={(e) => handleFileChange(e.target.files)}
-          disabled={isProcessing}
-        />
-        <label 
-          htmlFor="file-upload"
-          className={`cursor-pointer bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ${isProcessing ? 'bg-slate-600 hover:bg-slate-600 cursor-not-allowed' : ''}`}
+      <div className="bg-slate-800/50 p-6 sm:p-8 rounded-lg border border-slate-700">
+        
+        <button
+            onClick={onDemoSelect}
+            disabled={isProcessing}
+            className={`w-full flex items-center justify-center gap-3 text-lg font-bold py-4 px-6 rounded-lg transition duration-300 mb-6 ${isProcessing ? 'bg-slate-600 cursor-not-allowed' : 'bg-cyan-600 hover:bg-cyan-500'} text-white`}
         >
-          {isProcessing ? 'Обработка...' : 'Выбрать файл'}
-        </label>
-         <p className="text-xs text-slate-500 mt-4">Поддерживаемые форматы: .geojson, .json</p>
-         {fileName && !isProcessing && (
-            <p className="text-sm text-green-400 mt-4">Загружен файл: {fileName}</p>
-         )}
+            <RoadIcon className="w-6 h-6"/>
+            {isProcessing ? 'Обработка...' : 'Использовать демо-данные'}
+        </button>
+
+        <div className="relative flex py-2 items-center">
+            <div className="flex-grow border-t border-slate-700"></div>
+            <span className="flex-shrink mx-4 text-slate-500 text-sm">ИЛИ</span>
+            <div className="flex-grow border-t border-slate-700"></div>
+        </div>
+        
+        <div 
+          className={`p-6 rounded-lg border-2 border-dashed ${isDragging ? 'border-cyan-400 bg-slate-800' : 'border-slate-700'} ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''} transition-all duration-300 flex flex-col items-center justify-center text-center mt-6`}
+          onDragEnter={onDragEnter}
+          onDragLeave={onDragLeave}
+          onDragOver={onDragOver}
+          onDrop={onDrop}
+        >
+          <UploadIcon className="w-10 h-10 text-slate-500 mb-3" />
+          <h3 className="font-semibold mb-1 text-slate-300">Загрузите свой GeoJSON файл</h3>
+          <p className="text-slate-400 text-sm mb-4">
+            Перетащите файл сюда или нажмите, чтобы выбрать
+          </p>
+          <input
+            type="file"
+            id="file-upload"
+            className="hidden"
+            accept=".geojson,.json"
+            onChange={(e) => handleFileChange(e.target.files)}
+            disabled={isProcessing}
+          />
+          <label 
+            htmlFor="file-upload"
+            className={`cursor-pointer bg-slate-600 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm ${isProcessing ? 'bg-slate-700 hover:bg-slate-700 cursor-not-allowed' : ''}`}
+          >
+            Выбрать файл
+          </label>
+           {fileName && !isProcessing && (
+              <p className="text-sm text-green-400 mt-4">Активные данные: {fileName}</p>
+           )}
+        </div>
       </div>
     </div>
   );

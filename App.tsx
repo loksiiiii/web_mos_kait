@@ -16,6 +16,7 @@ import { marked } from 'marked';
 import { CongestionAnalysisData, RoadConditionData, TrafficForecastData } from './types';
 import { MenuIcon } from './components/icons/MenuIcon';
 import { RoadIcon } from './components/icons/RoadIcon';
+import { DEMO_GEOJSON } from './sampleData';
 
 const App: React.FC = () => {
   const [activeStep, setActiveStep] = useState(1);
@@ -48,29 +49,13 @@ const App: React.FC = () => {
     setError(null);
   };
 
-  const handleFileSelect = useCallback(async (file: File) => {
+  const runAnalysisPipeline = async (propertiesOnly: any[], sourceName: string) => {
     resetState();
-    setUploadedFile(file);
+    setUploadedFile({ name: sourceName } as File); // Mock file for display
     setProcessingStep(1);
     setError(null);
 
     try {
-      const text = await file.text();
-      const geojson = JSON.parse(text);
-
-      if (!geojson.features || !Array.isArray(geojson.features)) {
-        throw new Error('Неверный формат GeoJSON: отсутствует массив "features".');
-      }
-
-      const edges = geojson.features.filter(
-        (feature: any) => feature?.properties?.PaintEdge === true
-      );
-      
-      if (edges.length === 0) {
-        throw new Error('В файле не найдено проблемных участков с параметром "PaintEdge": true.');
-      }
-
-      const propertiesOnly = edges.map(e => e.properties);
       setProblematicEdges(propertiesOnly);
       setCompletedSteps([1]);
       setActiveStep(2);
@@ -109,15 +94,57 @@ const App: React.FC = () => {
       
     } catch (e: any) {
       console.error(e);
+      setError(e.message || 'Произошла неизвестная ошибка.');
+      setActiveStep(1);
+      setCompletedSteps([]);
+    } finally {
+      setProcessingStep(null);
+    }
+  };
+
+
+  const handleFileSelect = useCallback(async (file: File) => {
+    try {
+      const text = await file.text();
+      const geojson = JSON.parse(text);
+
+      if (!geojson.features || !Array.isArray(geojson.features)) {
+        throw new Error('Неверный формат GeoJSON: отсутствует массив "features".');
+      }
+
+      const edges = geojson.features.filter(
+        (feature: any) => feature?.properties?.PaintEdge === true
+      );
+      
+      if (edges.length === 0) {
+        throw new Error('В файле не найдено проблемных участков с параметром "PaintEdge": true.');
+      }
+      
+      const propertiesOnly = edges.map(e => e.properties);
+      await runAnalysisPipeline(propertiesOnly, file.name);
+
+    } catch (e: any) {
+       console.error(e);
       if (e instanceof SyntaxError) {
         setError(`Ошибка разбора файла: убедитесь, что это валидный JSON. (${e.message})`);
       } else {
         setError(e.message || 'Произошла неизвестная ошибка.');
       }
-      setActiveStep(1);
-      setCompletedSteps([]);
-    } finally {
-      setProcessingStep(null);
+      resetState();
+    }
+  }, []);
+
+  const handleDemoData = useCallback(async () => {
+    try {
+      const edges = DEMO_GEOJSON.features.filter(
+        (feature: any) => feature?.properties?.PaintEdge === true
+      );
+      const propertiesOnly = edges.map(e => e.properties);
+      await runAnalysisPipeline(propertiesOnly, 'Демонстрационные данные');
+    } catch (e: any) {
+       console.error(e);
+       setError(e.message || 'Произошла неизвестная ошибка при загрузке демо-данных.');
+       resetState();
     }
   }, []);
   
@@ -126,7 +153,7 @@ const App: React.FC = () => {
   const renderStep = () => {
     switch (activeStep) {
       case 1:
-        return <Step1DataPrep onFileSelect={handleFileSelect} isProcessing={isProcessing} fileName={uploadedFile?.name || null} />;
+        return <Step1DataPrep onFileSelect={handleFileSelect} onDemoSelect={handleDemoData} isProcessing={isProcessing} fileName={uploadedFile?.name || null} />;
       case 2:
         return <Step2RoadCondition analysisData={roadConditionData} isProcessing={processingStep === 2} />;
       case 3:
@@ -138,7 +165,7 @@ const App: React.FC = () => {
       case 6:
         return <Step6Visualization />;
       default:
-         return <Step1DataPrep onFileSelect={handleFileSelect} isProcessing={isProcessing} fileName={uploadedFile?.name || null} />;
+         return <Step1DataPrep onFileSelect={handleFileSelect} onDemoSelect={handleDemoData} isProcessing={isProcessing} fileName={uploadedFile?.name || null} />;
     }
   };
 

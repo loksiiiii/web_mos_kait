@@ -10,7 +10,7 @@ const Step5Recommendations: React.FC<RecommendationsProps> = ({ recommendationsH
   return (
     <div>
       <StepHeader stepId={5} />
-       <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+       <div className="card-modern glow-border p-6">
         <h3 className="text-xl font-semibold mb-4 text-cyan-300">Итоговые рекомендации</h3>
         {isProcessing && (
           <div className="space-y-4 animate-pulse min-h-[20rem]">

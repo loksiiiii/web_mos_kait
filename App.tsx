@@ -170,7 +170,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 font-sans text-slate-200">
+    <div className="min-h-screen font-sans">
       <Sidebar
         activeStep={activeStep}
         setActiveStep={setActiveStep}
@@ -181,7 +181,7 @@ const App: React.FC = () => {
         setIsOpen={setIsSidebarOpen}
       />
       <div className="md:pl-64 flex flex-col flex-1 min-h-screen">
-        <header className="md:hidden flex items-center justify-between p-4 border-b border-slate-700 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-10">
+        <header className="md:hidden flex items-center justify-between p-4 border-b border-slate-700/50 bg-slate-900/50 backdrop-blur-lg sticky top-0 z-10">
             <div className="flex items-center gap-2">
                 <RoadIcon className="w-6 h-6 text-cyan-400" />
                 <h1 className="text-lg font-bold text-white">Анализ Трафика</h1>
@@ -198,8 +198,8 @@ const App: React.FC = () => {
         <main className="flex-1 p-4 sm:p-6">
           <div className="max-w-7xl mx-auto space-y-8">
             {error && (
-              <div className="bg-red-600/20 border border-red-500 text-red-300 p-4 rounded-lg shadow-lg flex items-start gap-4">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-800 flex items-center justify-center font-bold text-sm">!</div>
+              <div className="glow-border-red bg-red-900/30 text-red-200 p-4 rounded-xl shadow-lg flex items-start gap-4 border border-red-500/50">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/50 flex items-center justify-center font-bold text-sm">!</div>
                 <div className="flex-grow">
                   <p className="font-bold">Ошибка</p>
                   <p className="text-sm">{error}</p>

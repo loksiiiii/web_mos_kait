@@ -15,8 +15,8 @@ const StepHeader: React.FC<StepHeaderProps> = ({ stepId }) => {
 
   return (
     <div className="mb-8">
-      <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">{step.name}</h2>
-      <p className="text-slate-400 mt-2">{step.description}</p>
+      <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gradient-white">{step.name}</h2>
+      <p className="text-slate-400 mt-2 max-w-2xl">{step.description}</p>
     </div>
   );
 };

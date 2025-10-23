@@ -51,15 +51,15 @@ const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, onDemoSelec
   return (
     <div className="space-y-8">
         <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Шаг 1: Загрузка и анализ данных</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gradient-white">Шаг 1: Загрузка и анализ данных</h2>
             <p className="text-slate-400 mt-2">Запустите анализ на демо-данных или загрузите свой файл GeoJSON.</p>
         </div>
-      <div className="bg-slate-800/50 p-6 sm:p-8 rounded-lg border border-slate-700">
+      <div className="card-modern glow-border p-6 sm:p-8">
         
         <button
             onClick={onDemoSelect}
             disabled={isProcessing}
-            className={`w-full flex items-center justify-center gap-3 text-lg font-bold py-4 px-6 rounded-lg transition duration-300 mb-6 ${isProcessing ? 'bg-slate-600 cursor-not-allowed' : 'bg-cyan-600 hover:bg-cyan-500'} text-white`}
+            className={`w-full flex items-center justify-center gap-3 text-lg font-bold py-4 px-6 rounded-lg transition duration-300 mb-6 transform hover:scale-[1.02] ${isProcessing ? 'bg-slate-600 cursor-not-allowed' : 'bg-gradient-to-r from-cyan-600 to-sky-600 hover:from-cyan-500 hover:to-sky-500 shadow-lg shadow-cyan-600/20 hover:shadow-cyan-500/30'} text-white`}
         >
             <RoadIcon className="w-6 h-6"/>
             {isProcessing ? 'Обработка...' : 'Использовать демо-данные'}
@@ -67,12 +67,12 @@ const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, onDemoSelec
 
         <div className="relative flex py-2 items-center">
             <div className="flex-grow border-t border-slate-700"></div>
-            <span className="flex-shrink mx-4 text-slate-500 text-sm">ИЛИ</span>
+            <span className="flex-shrink mx-4 text-slate-500 text-sm font-medium">ИЛИ</span>
             <div className="flex-grow border-t border-slate-700"></div>
         </div>
         
         <div 
-          className={`p-6 rounded-lg border-2 border-dashed ${isDragging ? 'border-cyan-400 bg-slate-800' : 'border-slate-700'} ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''} transition-all duration-300 flex flex-col items-center justify-center text-center mt-6`}
+          className={`relative p-6 rounded-lg border-2 border-dashed ${isDragging ? 'border-cyan-400 bg-slate-800/50 glow-cyan-subtle' : 'border-slate-700'} ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''} transition-all duration-300 flex flex-col items-center justify-center text-center mt-6`}
           onDragEnter={onDragEnter}
           onDragLeave={onDragLeave}
           onDragOver={onDragOver}
@@ -93,12 +93,12 @@ const Step1DataPrep: React.FC<Step1DataPrepProps> = ({ onFileSelect, onDemoSelec
           />
           <label 
             htmlFor="file-upload"
-            className={`cursor-pointer bg-slate-600 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm ${isProcessing ? 'bg-slate-700 hover:bg-slate-700 cursor-not-allowed' : ''}`}
+            className={`cursor-pointer bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm ${isProcessing ? 'bg-slate-700 hover:bg-slate-700 cursor-not-allowed' : ''}`}
           >
             Выбрать файл
           </label>
            {fileName && !isProcessing && (
-              <p className="text-sm text-green-400 mt-4">Активные данные: {fileName}</p>
+              <p className="text-sm text-green-400 mt-4 animate-pulse">Активные данные: {fileName}</p>
            )}
         </div>
       </div>

@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #020617; /* slate-950 */
+  /* Subtle noise background */
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Cg fill="none" stroke="%231E293B" stroke-width="1"%3E%3Cpath d="M769 229L1037 260.9M927 880L731 737 520 677 440 599 232 525 268 452 330 310 165 154 166 25 330 -107M18 801L100 600M206 1080L280 825M405 1010L504 882M552 1103L504 882M540 864L486 759M619 1124L650 878M752 1117L754 834M863 1082L844 774M911 1103L915 854M1008 1109L932 814M1120 1092L1037 815M1222 1111L1105 814M1342 1078L1210 815M1453 1049L1318 814M1544 1003L1426 815"%3E%3C/path%3E%3Cpath d="M-3 705L-46 677 -113 589 -159 549 -163 522 -162 460 -121 417 -104 391 -73 340 -43 324 -9 311 25 311 50 318 67 332 73 347 70 367 49 422 -4 457 -26 478 -56 509 -82 539 -102 559 -116 574 -125 583 -132 590 -137 596 -137 602 -133 610 -126 620 -115 632 -101 646 -84 661 -64 675 -42 686 -17 695 10 700 34 703 56 704 77 703 96 700 112 695 127 688 139 679 149 667 156 652 161 636 164 618 165 598 162 580 157 563 150 548 141 534 131 522 120 511 108 501 95 492 82 485 69 479 56 474 44 471 33 469 23 468 14 468 6 469 0 471 -3 474"%3E%3C/path%3E%3Cpath d="M-27 416L-35 372 -56 319 -93 241 -150 152 -218 56 -296 -47 -384 -154 -478 -261 -576 -367 -674 -469 -766 -563 -846 -646 -914 -716 -971 -774 -1016 -819 -1050 -852 -1075 -874 -1091 -888 -1099 -895 -1101 -897"%3E%3C/path%3E%3Cpath d="M1537 888L1487 815 1424 735 1350 644 1255 546 1145 434 1014 311 870 176 714 30 546 -126 367 -292 176 -468 -24 -653 -232 -846 -449 -1043 -675 -1246 -904 -1450 -1131 -1652 -1351 -1851 -1561 -2043"%3E%3C/path%3E%3Cpath d="M-125 1100L-152 1059 -201 1002 -282 924 -385 827 -507 711 -641 579 -784 434 -928 279 -1067 118 -1191 -44 -1297 -203 -1383 -355 -1449 -500 -1494 -634 -1516 -755 -1514 -863 -1488 -958 -1439 -1039 -1368 -1106 -1277 -1158 -1170 -1193 -1058 -1213 -945 -1216 -836 -1204 -731 -1177 -632 -1135 -540 -1081 -456 -1015 -380 -940 -313 -858 -255 -774 -206 -688 -166 -602 -135 -519 -113 -440 -100 -367 -95 -299 -98 -237 -108 -181 -124 -130 -146 -86 -173 -48 -204 -16 -238 10 -274 32 -312 50 -351 65 -390 77 -428 85 -465 89 -500 90 -534 88 -566 83 -597 76 -626 67 -653 56 -678 45 -702 32 -724 19 -744 6 -763 -6 -780 -17 -795 -27 -808 -36 -820 -44 -830 -52 -839 -58 -846 -64 -852 -69 -857 -73 -861 -76 -864 -78 -866 -80 -868 -81 -869 -82 -870 -82 -871"%3E%3C/path%3E%3Cpath d="M-522 1127L-569 1058 -622 982 -682 899 -749 809 -821 713 -895 613 -967 511 -1035 409 -1095 309 -1146 212 -1186 121 -1213 37 -1227 -45 -1227 -125 -1212 -202 -1183 -274 -1140 -340 -1085 -399 -1021 -452 -950 -496 -874 -532 -795 -559 -714 -578 -632 -587 -552 -588 -473 -580 -398 -564 -328 -542 -262 -514 -203 -482 -150 -448 -103 -412 -63 -376 -29 -341 6 -307 36 -275 61 -246 81 -221 96 -199 107 -181 114 -166 118 -154 119 -144 118 -135 115 -129 111 -124 106 -121 101 -120 95 -120 89 -121 82 -123 74 -126 66 -130 57 -135 48 -141 38 -148 28 -155 18 -163 8 -171 -2 -179 -11 -188 -20 -196 -29 -204 -37 -212 -44 -219 -51 -225 -57 -231 -62 -236 -67 -240 -71 -244 -74 -247 -77 -249 -79 -251 -80 -252"%3E%3C/path%3E%3Cpath d="M-1017 1131L-1029 1093 -1048 1047 -1074 994 -1107 931 -1147 859 -1191 781 -1241 696 -1294 607 -1350 514 -1407 419 -1464 323 -1519 227 -1571 133 -1618 43 -1659 -45 -1691 -129 -1714 -209 -1727 -285 -1729 -356 -1719 -422 -1698 -483 -1666 -539 -1624 -589 -1574 -633 -1517 -671 -1454 -702 -1387 -726 -1318 -744 -1248 -755 -1178 -758 -1110 -755 -1044 -745 -981 -730 -921 -710 -865 -686 -813 -659 -766 -628 -723 -596 -685 -562 -651 -527 -622 -498 -592 -471 -562 -447 -534 -426 -507 -407 -481 -391 -458 -377 -436 -365 -416 -355 -398 -347 -381 -340 -366 -335 -353 -331 -342 -328 -332 -326 -324 -325 -317 -325 -311 -326 -306 -328 -302"%3E%3C/path%3E%3C/g%3E%3C/svg%3E');
+}
+
+@layer components {
+    /* Modern Card with Glow Border */
+    .card-modern {
+        @apply bg-slate-800/60 border border-slate-700/80 rounded-xl shadow-2xl shadow-black/20 backdrop-blur-sm;
+    }
+
+    .glow-border, .glow-border-red {
+        position: relative;
+    }
+
+    .glow-border::before, .glow-border-red::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit; /* Use the parent's border-radius */
+        padding: 1px; /* The width of the border */
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.5;
+        transition: opacity 0.3s ease-in-out;
+    }
+    
+    .glow-border:hover::before {
+        opacity: 1;
+    }
+
+    .glow-border::before {
+       background: conic-gradient(from 180deg at 50% 50%, rgba(56, 189, 248, 0.7) 0deg, rgba(34, 211, 238, 0.7) 180deg, rgba(56, 189, 248, 0.7) 360deg);
+    }
+    .glow-border-red::before {
+       background: conic-gradient(from 180deg at 50% 50%, rgba(239, 68, 68, 0.7) 0deg, rgba(244, 114, 182, 0.7) 180deg, rgba(239, 68, 68, 0.7) 360deg);
+    }
+
+    /* Subtle Glow effect for active/hovered elements */
+    .glow-cyan-subtle {
+      box-shadow: 0 0 12px rgba(30, 213, 225, 0.3), 0 0 20px rgba(30, 213, 225, 0.2);
+    }
+
+    /* Gradient Text */
+    .text-gradient-white {
+       @apply bg-gradient-to-b from-white to-slate-300 bg-clip-text text-transparent;
+    }
+
+    /* Custom Prose styles */
+    .prose {
+        --tw-prose-body: theme('colors.slate.300');
+        --tw-prose-headings: theme('colors.white');
+        --tw-prose-lead: theme('colors.slate.400');
+        --tw-prose-links: theme('colors.cyan.400');
+        --tw-prose-bold: theme('colors.white');
+        --tw-prose-counters: theme('colors.slate.400');
+        --tw-prose-bullets: theme('colors.slate.600');
+        --tw-prose-hr: theme('colors.slate.700');
+        --tw-prose-quotes: theme('colors.slate.200');
+        --tw-prose-quote-borders: theme('colors.slate.700');
+        --tw-prose-captions: theme('colors.slate.400');
+        --tw-prose-code: theme('colors.cyan.300');
+        --tw-prose-pre-code: theme('colors.slate.300');
+        --tw-prose-pre-bg: theme('colors.slate.800');
+        --tw-prose-th-borders: theme('colors.slate.600');
+        --tw-prose-td-borders: theme('colors.slate.700');
+        --tw-prose-invert-body: theme('colors.slate.300');
+        --tw-prose-invert-headings: theme('colors.white');
+        --tw-prose-invert-lead: theme('colors.slate.400');
+        --tw-prose-invert-links: theme('colors.cyan.400');
+        --tw-prose-invert-bold: theme('colors.white');
+        --tw-prose-invert-counters: theme('colors.slate.400');
+        --tw-prose-invert-bullets: theme('colors.slate.600');
+        --tw-prose-invert-hr: theme('colors.slate.700');
+        --tw-prose-invert-quotes: theme('colors.slate.200');
+        --tw-prose-invert-quote-borders: theme('colors.slate.700');
+        --tw-prose-invert-captions: theme('colors.slate.400');
+        --tw-prose-invert-code: theme('colors.cyan.300');
+        --tw-prose-invert-pre-code: theme('colors.slate.300');
+        --tw-prose-invert-pre-bg: rgba(0, 0, 0, 0.5);
+        --tw-prose-invert-th-borders: theme('colors.slate.600');
+        --tw-prose-invert-td-borders: theme('colors.slate.700');
+    }
+    .prose h3 {
+        @apply text-cyan-300;
+    }
+    .prose h4 {
+        @apply text-slate-200;
+    }
+    .prose strong {
+        @apply text-slate-100;
+    }
+    .prose ul > li::marker {
+        color: theme('colors.cyan.400');
+    }
+}

@@ -25,7 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeStep, setActiveStep, com
         aria-hidden="true"
       ></div>
 
-      <aside className={`fixed inset-y-0 left-0 bg-slate-800/95 backdrop-blur-sm p-6 flex flex-col shrink-0 border-r border-slate-700 w-64 z-40 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed inset-y-0 left-0 bg-slate-900/70 backdrop-blur-xl p-6 flex flex-col shrink-0 border-r border-slate-700/50 w-64 z-40 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex items-center justify-between gap-3 mb-8">
             <div className="hidden md:flex items-center gap-3">
               <RoadIcon className="w-8 h-8 text-cyan-400" />
@@ -54,15 +54,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeStep, setActiveStep, com
                     }
                   }}
                   disabled={isProcessing}
-                  className={`w-full text-left p-3 rounded-lg transition-colors duration-200 flex items-center justify-between ${
+                  className={`w-full text-left p-3 rounded-lg transition-all duration-200 flex items-center justify-between ${
                     activeStep === step.id
-                      ? 'bg-cyan-500/20 text-cyan-300'
+                      ? 'bg-cyan-400/10 text-cyan-300 ring-1 ring-cyan-400/30'
                       : 'text-slate-400 hover:bg-slate-700/50 hover:text-slate-200'
-                  } ${isProcessing ? 'cursor-not-allowed' : ''}`}
+                  } ${isProcessing ? 'cursor-not-allowed opacity-60' : ''}`}
                 >
                   <div className="flex-grow">
                     <span className="font-semibold">{step.name}</span>
-                    <p className="text-xs mt-1">{step.description}</p>
+                    <p className="text-xs mt-1 text-slate-400/80">{step.description}</p>
                   </div>
                   <div className="w-5 h-5 ml-2 flex-shrink-0">
                     {completedSteps.includes(step.id) && processingStep !== step.id && (

@@ -9,13 +9,13 @@ const Step6Visualization: React.FC = () => {
   return (
     <div>
       <StepHeader stepId={6} />
-      <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+      <div className="card-modern glow-border p-6">
         <h3 className="text-xl font-semibold mb-4 text-cyan-300">Интерактивная карта дорожной обстановки</h3>
         <p className="text-slate-400 mb-4 text-sm">
           На карте в реальном времени отображается информация о пробках, полученная из внешней системы мониторинга трафика. 
           Зеленый цвет означает свободное движение, а оттенки от желтого до темно-красного — затрудненное движение и серьезные заторы.
         </p>
-        <div className="relative w-full h-[65vh] rounded-lg overflow-hidden border-2 border-slate-700 bg-slate-900">
+        <div className="relative w-full h-[65vh] rounded-lg overflow-hidden border-2 border-slate-700/80 bg-slate-900">
           <iframe
             src={mapUrl}
             style={{

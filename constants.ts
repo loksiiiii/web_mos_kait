@@ -161,7 +161,6 @@ List up to 5 most critical segments in 'criticalSegments' based on the largest n
 export const RECOMMENDATIONS_PROMPT = `
 Based on the previous analyses (road condition, congestion/accident risk, traffic forecast), generate a comprehensive set of recommendations to improve the traffic situation for the provided segments.
 Your recommendations should be specific, actionable, and tied to the data. For example, if congestion is high due to a specific intersection, recommend traffic light optimization. If 'NewLoad' is high, suggest capacity improvements.
-The recommendations should be structured and prioritized. Use Markdown with headings for different problem areas and bullet points for specific recommendations.
 Here is the context from previous steps:
 1. Road Condition Assessment:
 ---
@@ -177,4 +176,18 @@ Here is the context from previous steps:
 ---
 
 Now, provide your final recommendations based on all this information and the original data.
+Provide the output as a JSON object with the following structure:
+{
+  "summary": "Краткое текстовое резюме с общими выводами на русском языке.",
+  "prioritized_recommendations": [
+    {
+      "segment_name": "Название улицы (город)",
+      "edge_id": 12345,
+      "priority": "Высокий" | "Средний" | "Низкий",
+      "problem_areas": [ "Краткое описание проблемы 1", "Краткое описание проблемы 2" ],
+      "recommendations": [ "Конкретная рекомендация 1", "Конкретная рекомендация 2" ]
+    }
+  ]
+}
+List up to 5 most critical segments.
 `;

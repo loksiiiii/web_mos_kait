@@ -46,6 +46,19 @@ export interface TrafficForecastData {
   }[];
 }
 
+// Data structure for Step 5: Recommendations
+export interface RecommendationData {
+  summary: string;
+  prioritized_recommendations: {
+    segment_name: string;
+    edge_id: number;
+    priority: string;
+    problem_areas: string[];
+    recommendations: string[];
+  }[];
+}
+
+
 // Fix: Add missing ExtractedFeatures interface for the unused Step2FeatureExtraction component.
 // This resolves the compilation error.
 export interface ExtractedFeatures {

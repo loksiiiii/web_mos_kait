@@ -6,7 +6,7 @@ import {
     TRAFFIC_FORECAST_PROMPT,
     RECOMMENDATIONS_PROMPT
 } from '../constants';
-import { CongestionAnalysisData, RoadConditionData, TrafficForecastData } from "../types";
+import { CongestionAnalysisData, RoadConditionData, TrafficForecastData, RecommendationData } from "../types";
 
 const MODEL_NAME = "gemini-2.5-flash";
 
@@ -99,6 +99,32 @@ export const analyzeTrafficForecast = async (problematicEdges: any[]): Promise<T
     return callGemini(prompt);
 };
 
+const formatRecommendationsToMarkdown = (data: RecommendationData): string => {
+    let markdown = `### Общее резюме\n${data.summary}\n\n`;
+    
+    data.prioritized_recommendations.forEach(rec => {
+        markdown += `#### ${rec.segment_name} (Приоритет: ${rec.priority})\n\n`;
+        
+        markdown += `**Проблемные области:**\n`;
+        if (rec.problem_areas && rec.problem_areas.length > 0) {
+            markdown += rec.problem_areas.map(area => `- ${area}`).join('\n');
+        } else {
+            markdown += `- _Нет данных_`;
+        }
+        markdown += `\n\n`;
+        
+        markdown += `**Рекомендации:**\n`;
+        if (rec.recommendations && rec.recommendations.length > 0) {
+            markdown += rec.recommendations.map(item => `- ${item}`).join('\n');
+        } else {
+            markdown += `- _Нет данных_`;
+        }
+        markdown += `\n\n---\n\n`;
+    });
+    
+    return markdown;
+};
+
 export const generateRecommendations = async (
     problematicEdges: any[],
     roadConditionAnalysis: string,
@@ -111,5 +137,17 @@ export const generateRecommendations = async (
         .replace('{trafficForecast}', trafficForecast);
     
     const prompt = buildPrompt(problematicEdges, taskPrompt);
-    return callGemini(prompt);
+    
+    const recommendationData: RecommendationData | string = await callGemini(prompt);
+    
+    if (typeof recommendationData === 'string') {
+        return recommendationData; 
+    }
+
+    if (typeof recommendationData !== 'object' || recommendationData === null || !recommendationData.prioritized_recommendations) {
+        console.error("Received invalid data structure for recommendations:", recommendationData);
+        return "### Ошибка\nНе удалось отформатировать полученные рекомендации. Структура данных неверна.";
+    }
+    
+    return formatRecommendationsToMarkdown(recommendationData);
 };
